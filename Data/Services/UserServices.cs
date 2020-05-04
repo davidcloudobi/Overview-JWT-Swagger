@@ -51,7 +51,9 @@ namespace Data.Services
             {
                 UserName = user.Username,
                 DisplayName = user.DisplayName,
-                Email = user.Email
+                Email = user.Email,
+                Role = user.Role
+                
 
             };
 

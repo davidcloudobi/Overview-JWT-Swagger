@@ -8,5 +8,6 @@ namespace Data.ETF
    public class UserModel:IdentityUser
     {
         public string DisplayName { get; set; }
+        public string Role { get; set; }
     }
 }

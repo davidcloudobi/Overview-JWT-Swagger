@@ -38,8 +38,8 @@ namespace Data.Services
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.NameId, user.UserName),
-                new Claim(ClaimTypes.Role, "User"),
-                new Claim(ClaimTypes.Role, "Admin")
+                new Claim(ClaimTypes.Role, user.Role)
+               
             };
 
             //generate signing credential
