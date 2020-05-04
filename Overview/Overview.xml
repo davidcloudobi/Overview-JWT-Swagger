@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Overview</name>
+    </assembly>
+    <members>
+        <member name="T:Overview.Controllers.UserController">
+            <summary>
+            Version 1, User
+            </summary>
+            
+        </member>
+        <member name="M:Overview.Controllers.UserController.#ctor(Data.Services.IUserServices)">
+            <summary>
+            user services
+            </summary>
+            <param name="userServices"></param>
+        </member>
+        <member name="M:Overview.Controllers.UserController.Login(Data.DTO.UserLoginDTO)">
+            <summary>
+             Return a login user
+            </summary>
+            <param name="user"></param>
+            <remarks>
+            Sample request (this request return  a login user)
+            </remarks>
+            <response code="200">Returns  a login user </response>
+        </member>
+        <member name="M:Overview.Controllers.UserController.Register(Data.DTO.UserRegDTO)">
+            <summary>
+             Return a register user
+            </summary>
+            <param name="user"></param>
+            <remarks>
+            Sample request (this request return  a register user)
+            </remarks>
+            <response code="200">Returns  a register user </response>
+        </member>
+        <member name="M:Overview.Controllers.UserController.CurrentUser">
+            <summary>
+             Return a current user
+            </summary>
+            <remarks>
+            Sample request (this request return  a current user)
+            </remarks>
+            <response code="200">Returns  a current user </response>
+        </member>
+        <member name="M:Overview.Controllers.UserController.AddPhone(Data.DTO.PhoneDTO)">
+            <summary>
+             Return a new phone
+            </summary>
+            <param name="phone"></param>
+            <remarks>
+            Sample request (this request return a new phone)
+            </remarks>
+            <response code="200">Returns  a new phone </response>
+        </member>
+    </members>
+</doc>
