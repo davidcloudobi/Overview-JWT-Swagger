@@ -69,6 +69,7 @@ namespace Overview
 
             }).AddJwtBearer(options =>
             {
+               // options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     //ValidateIssuer = true,
@@ -180,6 +181,13 @@ namespace Overview
                 setupAction.IncludeXmlComments(xmlCommentsFullPath);
             });
 
+
+            services.AddCors(opt => {
+                opt.AddPolicy("CorsPolicy", policy => {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -210,6 +218,8 @@ namespace Overview
           
 
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
