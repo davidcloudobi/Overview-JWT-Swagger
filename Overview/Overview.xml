@@ -55,5 +55,25 @@
             </remarks>
             <response code="200">Returns  a new phone </response>
         </member>
+        <member name="M:Overview.Controllers.UserController.ChangePassword(Data.DTO.PasswordDTO)">
+            <summary>
+             Return a new password
+            </summary>
+            <param name="details"></param>
+            <remarks>
+            Sample request (this request return a new password)
+            </remarks>
+            <response code="200">Returns  a new password </response>
+        </member>
+        <member name="M:Overview.Controllers.UserController.ResetPassword(Data.DTO.DisplayPasswordDTO)">
+            <summary>
+             Return a new password
+            </summary>
+            <param name="details"></param>
+            <remarks>
+            Sample request (this request reset password)
+            </remarks>
+            <response code="200">Returns  a new password </response>
+        </member>
     </members>
 </doc>

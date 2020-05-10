@@ -57,6 +57,7 @@ namespace Data.Services
 
             };
 
+         
             var result = await _userManager.CreateAsync(newUser, user.Password);
 
             if (result.Succeeded)
@@ -100,6 +101,76 @@ namespace Data.Services
             {
                 throw new ArgumentException("incorrect details");
             }
+        }
+
+        public async Task<DisplayPasswordDTO> ChangePassword(PasswordDTO details)
+        {
+            if (details == null)
+            {
+                throw new ArgumentException("incorrect details");
+            }
+            var username = _httpContextAccessor.HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+
+
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                throw new ArgumentException("incorrect details");
+            }
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, details.OldPassword, false);
+
+            if (result.Succeeded)
+            {
+              var response = await  _userManager.ChangePasswordAsync(user, details.OldPassword, details.NewPassword);
+
+              if (response.Succeeded)
+              {
+                  var newDetails = new DisplayPasswordDTO
+                  {
+                      Email =  user.Email,
+                      NewPassword = details.NewPassword
+                  };
+
+                  return newDetails;
+              }
+
+              else
+              {
+                  throw new Exception("Operation not successful");
+              }
+            }
+            else
+            {
+                throw new Exception("Operation not successful");
+            }
+
+
+
+        }
+
+        public async Task<string> ResetPassword(DisplayPasswordDTO details)
+        {
+            var user = await _userManager.FindByEmailAsync(details.Email);
+
+            if (user == null)
+            {
+                throw new Exception("Invalid Email");
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+          var response = await _userManager.ResetPasswordAsync(user, token, details.NewPassword);
+
+          if (response.Succeeded)
+          {
+              return details.NewPassword;
+          }
+          else
+          {
+              throw new Exception("Operation not successful");
+            }
+
         }
 
         public async Task<UserDisplayInfoDTO> CurrentUser()
